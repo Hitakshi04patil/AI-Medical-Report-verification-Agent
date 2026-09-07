@@ -1,69 +1,76 @@
 # AI Medical Report Verification Agent
 
-## Project Overview
+A Python Flask-based application for verifying employee medical reports and extracting important information from PDF medical documents.
 
-The AI Medical Report Verification Agent is a Python-based application designed to verify employee medical fitness reports.
+## 📌 Project Overview
 
-The system accepts a medical report in PDF format, reads and extracts the required information, performs different validations, and provides the final verification result through a Flask API.
+The **AI Medical Report Verification Agent** processes employee medical report PDFs and performs multiple verification checks.
 
-## Key Features
+The system extracts candidate information, verifies medical report details, checks doctor and hospital information, validates the report date, and generates an overall verification result.
 
-* Upload medical report PDF
-* Read and extract PDF content
-* OCR support for scanned PDF pages
-* Extract candidate details
-* Verify candidate information
-* Verify doctor signature and stamp
-* Verify hospital details
-* Validate report date
-* Verify medical fitness information
-* Generate overall report validation result
-* Return verification results in JSON format
-* API testing using Postman
+The application provides the final result through a **Flask REST API** in JSON format.
 
-## Project Flow
+## ✨ Key Features
+
+* 📄 Medical report PDF upload
+* 🔍 PDF text extraction using PyMuPDF
+* 🖼️ OCR support for scanned PDF reports
+* 👤 Candidate details extraction
+* 🩺 Medical information extraction
+* 👨‍⚕️ Doctor signature and stamp verification
+* 🏥 Hospital details verification
+* 📅 Medical report date validation
+* ✅ Medical fitness verification
+* 📊 Overall report validation
+* 🔗 Flask REST API
+* 🧪 API testing using Postman
+* 📦 JSON response
+
+## 🔄 Project Flow
 
 ```text
 Medical Report PDF
         ↓
 PDF Upload
         ↓
-Read PDF
+PDF Text Extraction
         ↓
-Extract Information
+OCR if Required
         ↓
-Candidate Verification
+Candidate Details Extraction
         ↓
 Doctor Verification
         ↓
 Hospital Verification
         ↓
-Report Validation
+Report Date Validation
         ↓
-Medical Verification
+Medical Fitness Verification
         ↓
 Overall Validation
         ↓
-JSON Response
+JSON API Response
 ```
 
-## Technologies Used
+## 🛠️ Technologies Used
 
-* Python
-* Flask
-* PyMuPDF
-* Tesseract OCR
-* pytesseract
-* Pillow
-* Regular Expressions
-* HTML
-* CSS
-* Postman
+| Technology          | Purpose                      |
+| ------------------- | ---------------------------- |
+| Python              | Application development      |
+| Flask               | REST API and web application |
+| PyMuPDF             | PDF text extraction          |
+| Tesseract OCR       | Scanned PDF processing       |
+| pytesseract         | Python OCR integration       |
+| Pillow              | Image processing             |
+| Regular Expressions | Information extraction       |
+| HTML                | Frontend                     |
+| CSS                 | User interface               |
+| Postman             | API testing                  |
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
-AI Medical Report Verification Agent
+AI-Medical-Report-Verification-Agent
 │
 ├── static/
 │   └── style.css
@@ -71,40 +78,36 @@ AI Medical Report Verification Agent
 ├── templates/
 │   └── index.html
 │
-├── uploads/
-│
 ├── app.py
 ├── extract.py
 ├── verify.py
-├── verification.py
 ├── medical_parameters.py
 ├── requirements.txt
 ├── .gitignore
 └── README.md
 ```
 
-## Requirements
+## ⚙️ Installation
 
-The project uses the following Python libraries:
+### 1. Clone the Repository
 
-```text
-Flask
-PyMuPDF
-pytesseract
-Pillow
+```bash
+git clone https://github.com/Hitakshi04patil/AI-Medical-Report-Verification-Agent.git
 ```
 
-Tesseract OCR also needs to be installed separately on the system for OCR-based PDF processing.
+### 2. Open the Project
 
-## How to Run
+```bash
+cd AI-Medical-Report-Verification-Agent
+```
 
-### 1. Create Virtual Environment
+### 3. Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-### 2. Activate Virtual Environment
+### 4. Activate Virtual Environment
 
 Windows:
 
@@ -112,37 +115,27 @@ Windows:
 venv\Scripts\activate
 ```
 
-### 3. Install Required Libraries
+### 5. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the Application
+### 6. Run the Application
 
 ```bash
 python app.py
 ```
 
-### 5. Open the Application
+### 7. Open in Browser
 
 ```text
 http://127.0.0.1:5000/
 ```
 
-## API Endpoint
+## 🔌 API Endpoint
 
-```text
-POST /upload
-```
-
-The `/upload` endpoint accepts a medical report PDF and returns the verification result in JSON format.
-
-## API Testing Using Postman
-
-The Flask API was tested using Postman.
-
-### Request Details
+### Upload Medical Report
 
 **Method:**
 
@@ -153,7 +146,19 @@ POST
 **Endpoint:**
 
 ```text
-http://127.0.0.1:5000/upload
+/upload
+```
+
+The API accepts a medical report PDF and returns the verification result in JSON format.
+
+## 🧪 API Testing with Postman
+
+The API was tested using Postman.
+
+### Request
+
+```text
+POST http://127.0.0.1:5000/upload
 ```
 
 ### Body
@@ -164,7 +169,7 @@ Select:
 form-data
 ```
 
-Add the following field:
+Add:
 
 ```text
 Key: file
@@ -172,29 +177,59 @@ Type: File
 Value: Select Medical Report PDF
 ```
 
-The uploaded medical report is processed by the Flask API, and the verification result is returned in JSON format.
+The API processes the uploaded report and returns the verification result in JSON format.
 
-## Verification
+## 🔎 Verification Checks
 
-The system performs verification for:
+The system currently performs verification for:
 
-* Candidate Details
-* Doctor Details
-* Hospital Details
-* Medical Report
-* Medical Fitness
-* Overall Report
+* Candidate details
+* Doctor details
+* Hospital details
+* Medical report information
+* Report date
+* Medical fitness information
+* Overall report status
 
-## Future Improvements
+## 📋 Example API Response
+
+```json
+{
+    "candidate": {
+        "name": "Candidate Name",
+        "age": "25",
+        "gender": "Male"
+    },
+    "verification": {
+        "candidate": "Valid",
+        "doctor": "Valid",
+        "hospital": "Valid",
+        "report": "Valid",
+        "medical": "Valid",
+        "overall": "Valid"
+    }
+}
+```
+
+## 🚀 Future Improvements
 
 * Database integration
 * Medical report history
 * Search and filter functionality
-* Dashboard
-* Improved PDF extraction
+* Dashboard and analytics
 * Improved OCR accuracy
-* Support for different medical report formats
+* Support for multiple medical report formats
+* Authentication and role-based access
+* Improved hospital logo verification
 
-## Author
+## 🔐 Security & Privacy
 
-Hitakshi Patil
+Medical reports may contain sensitive personal and health information.
+
+For this reason, actual medical report PDFs and sensitive files are **not included in this GitHub repository**.
+
+## 👩‍💻 Author
+
+**Hitakshi Patil**
+
+GitHub: Hitakshi04patil
